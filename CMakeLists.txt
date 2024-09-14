@@ -69,6 +69,13 @@ foreach(app ${apps})
   target_link_libraries(${app_stem} ${app_stem}_skel)
 endforeach()
 
+file(GLOB test_app src/*.cpp)
+foreach(app ${test_app})
+  get_filename_component(app_stem ${app} NAME_WE)
+  add_executable(${app_stem} src/${app_stem}.cpp)
+endforeach(app)
+
+
 execute_process(
     COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/skelln.sh"
     WORKING_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
