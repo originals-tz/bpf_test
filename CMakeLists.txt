@@ -68,3 +68,11 @@ foreach(app ${apps})
   add_executable(${app_stem} src/${app_stem}.c)
   target_link_libraries(${app_stem} ${app_stem}_skel)
 endforeach()
+
+execute_process(
+    COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/skelln.sh"
+    WORKING_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+    OUTPUT_VARIABLE script_output
+    ERROR_VARIABLE script_error
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
